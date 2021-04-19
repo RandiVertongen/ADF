@@ -1,0 +1,9 @@
+{
+	"name": "randivbdoadf",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a9b38c2e-1a69-466e-b062-7703e7fa5726",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
