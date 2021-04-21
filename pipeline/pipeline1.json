@@ -55,6 +55,7 @@
 			},
 			{
 				"name": "Copy data2",
+				"description": "bla",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
