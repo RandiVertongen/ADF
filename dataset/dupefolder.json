@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "output/dupes",
-				"container": "mycontainer"
+				"folderPath": "input",
+				"container": "csvcontainer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
