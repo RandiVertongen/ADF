@@ -1,0 +1,20 @@
+{
+	"name": "PowerQuery1",
+	"properties": {
+		"type": "WranglingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "TripData1",
+					"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: true,\n\tignoreNoFilesFound: false) ~>  TripData1",
+					"dataset": {
+						"referenceName": "TripData1",
+						"type": "DatasetReference"
+					}
+				}
+			],
+			"sinks": [],
+			"script": "section Section1;\r\nshared TripData1 = let\r\n  AdfDoc = AzureStorage.DataLakeContents(\"https://testdatalakerandiv.dfs.core.windows.net/sample-data/trip_data_1.csv\"),\r\n  Csv = Csv.Document(AdfDoc, [Delimiter = \",\", Encoding = TextEncoding.Utf8, QuoteStyle = QuoteStyle.Csv]),\r\n  PromotedHeaders = Table.PromoteHeaders(Csv, [PromoteAllScalars = true])\r\nin\r\n  PromotedHeaders;\r\nshared UserQuery = let\r\n  Source = TripData1,\r\n  #\"Changed column type\" = Table.TransformColumnTypes(Source, {{\"tip_amount\", type number}}),\r\n  #\"Grouped rows\" = Table.Group(#\"Changed column type\", {\"passenger_count\"}, {{\"average_tip_amount\", each List.Average([tip_amount]), type nullable number}})\r\nin\r\n  #\"Grouped rows\";\r\n"
+		}
+	}
+}
